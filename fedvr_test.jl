@@ -3,17 +3,19 @@
 using LinearAlgebra
 using Dates
 
-function free_prop(Psi, prop1, prop2)
+function free_prop(Psi, prop1, prop2, wsp1, wsp2)
 	Nr1 = size(Psi, 1)
 	Nr2 = size(Psi, 2)
 	Npw = size(Psi, 3)
 	# prop x
 	for j = 1:Nr2
-		Psi[:, j, :] = prop1 * Psi[:, j, :]
+		wsp1 = prop1 * Psi[:, j, :]
+		Psi[:, j, :] = wsp1
 	end
 	# prop y
 	for i = 1:Nr1
-		Psi[i, :, :] = prop2 * Psi[i, :, :]
+		wsp2 = prop2 * Psi[i, :, :]
+		Psi[i, :, :] = wsp2
 	end
 end
 
@@ -29,10 +31,13 @@ function main()
 	Psi = rand(ComplexF64, Nr1, Nr2, Npw)
 	prop1 = rand(Float64, Nr1, Nr1)
 	prop2 = rand(Float64, Nr2, Nr2)
+	wsp1 = zeros(Nr1)
+	wsp2 = zeros(Nr2)
+
 	timer_beg = time();
 	for it = 1:Nt
 		println(it)
-		free_prop(Psi, prop1, prop2)
+		free_prop(Psi, prop1, prop2, wsp1, wsp2)
 		timer_end = time();
 		println("timer: ", timer_end - timer_beg)
 		timer_beg = timer_end;
