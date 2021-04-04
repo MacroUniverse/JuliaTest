@@ -31,7 +31,7 @@ end
 
 # test associated legendre polynomial for multiple l
 # (for every l < lmax, 0 < m < l)
-#https:#www.gnu.org/software/gsl/doc/html/specfunc.html#c.gsl_sf_legendre_array
+#https://www.gnu.org/software/gsl/doc/html/specfunc.html#c.gsl_sf_legendre_array
 # same as Wolfram Alpha
 lmax = 3;
 n = sf_legendre_array_n(lmax);
