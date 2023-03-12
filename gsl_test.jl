@@ -70,7 +70,7 @@ end
 # int |R|^2 r^2 dr = 1
 n = 1; l = 0; Z = 1.37;
 Nr = 50;
-r = zeros(Nr); linspace(r, 0.1, 10);
+r = LinRange(0.1, 10, Nr);
 for i = 1:Nr
 	R0 = 2 * Z^1.5 * exp(-Z * r[i]);
 	R = sf_hydrogenicR(n, l, Z, r[i]);
@@ -81,7 +81,7 @@ end
 
 n = 3; l = 1; Z = 1.37;
 Nr = 50;
-r = zeros(Nr); linspace(r, 0.1, 10);
+r = LinRange(0.1, 10, Nr);
 for i = 1:Nr
 	R0 = 8/(27 * sqrt(6)) * Z^1.5 * (1 - Z*r[i]/6) * Z * r[i] * exp(-Z * r[i]/3);
 	R = sf_hydrogenicR(n, l, Z, r[i]);
